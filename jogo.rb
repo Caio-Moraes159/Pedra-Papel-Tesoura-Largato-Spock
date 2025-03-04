@@ -1,14 +1,14 @@
 jogadas = ['pedra', 'papel', 'tesoura', 'largato', 'spock']
 
 def display_intro(jogadas)
-  puts "====================================="
-  puts "  Bem-vindo ao Jogo de Pedra, Papel, Tesoura, Largato e Spock!"
-  puts "====================================="
+  puts "==================================================================="
+  puts "  Bem-vindo ao Jogo de #{jogadas.join(', ')}!"
+  puts "==================================================================="
   puts "Instruções:"
   puts "1. Escolha entre #{jogadas.join(', ')}"
   puts "2. O computador também fará uma escolha."
   puts "3. Veja quem ganha!"
-  puts "====================================="
+  puts "==================================================================="
   puts
 end
 
