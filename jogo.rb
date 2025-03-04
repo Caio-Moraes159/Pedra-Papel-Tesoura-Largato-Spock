@@ -1,42 +1,46 @@
-def display_intro
+jogadas = ['pedra', 'papel', 'tesoura', 'largato', 'spock']
+
+def display_intro(jogadas)
   puts "====================================="
-  puts "  Bem-vindo ao Jogo de Pedra, Papel, Tesoura!"
+  puts "  Bem-vindo ao Jogo de Pedra, Papel, Tesoura, Largato e Spock!"
   puts "====================================="
   puts "Instruções:"
-  puts "1. Escolha entre Pedra, Papel ou Tesoura."
+  puts "1. Escolha entre #{jogadas.join(', ')}"
   puts "2. O computador também fará uma escolha."
   puts "3. Veja quem ganha!"
   puts "====================================="
   puts
 end
 
-def logica
-  puts "Escolha Pedra, Papel ou Tesoura:"
-  escolha_jogador = gets.chomp.downcase
+def logica(jogadas)
+  puts "Escolha #{jogadas.join(', ')}:"
+  jogada_player = gets.chomp.downcase
 
-  escolha_computador = ['pedra', 'papel', 'tesoura']
-  embaralha = escolha_computador.sample
+  jogada_computador = jogadas.sample
 
-  while (escolha_jogador != 'papel') && (escolha_jogador != 'pedra') && (escolha_jogador != 'tesoura')
-    puts
-    puts "Jogada invalida, escreva novamente"
-    escolha_jogador = gets.chomp.downcase
+  puts
+  # Verifica se a escolha do jogador é válida
+  while !jogadas.include?(jogada_player)
+    puts "Jogada inválida, escreva novamente:"
+    jogada_player = gets.chomp.downcase
   end
 
-  if escolha_jogador == embaralha
-    puts "Empate! Ambos escolheram #{escolha_jogador.capitalize}."
-  elsif (escolha_jogador == 'pedra' && embaralha == 'tesoura') ||
-        (escolha_jogador == 'papel' && embaralha == 'pedra') ||
-        (escolha_jogador == 'tesoura' && embaralha == 'papel')
-    puts "Você ganhou! #{escolha_jogador.capitalize} vence #{embaralha.capitalize}."
+  if jogada_player == jogada_computador
+    puts "Empate! Ambos escolheram #{jogada_player.capitalize}."
+  elsif (jogada_player == 'pedra' && (jogada_computador == 'tesoura' || jogada_computador == 'largato')) ||
+        (jogada_player == 'papel' && (jogada_computador == 'pedra' || jogada_computador == 'spock')) ||
+        (jogada_player == 'tesoura' && (jogada_computador == 'papel' || jogada_computador == 'largato')) ||
+        (jogada_player == 'largato' && (jogada_computador == 'papel' || jogada_computador == 'spock')) ||
+        (jogada_player == 'spock' && (jogada_computador == 'pedra' || jogada_computador == 'tesoura'))
+    puts "Você ganhou! #{jogada_player.capitalize} vence #{jogada_computador.capitalize}."
   else
-    puts "Você perdeu! #{embaralha.capitalize} vence #{escolha_jogador.capitalize}."
+    puts "Você perdeu! #{jogada_computador.capitalize} vence #{jogada_player.capitalize}."
   end
 end
 
-display_intro # Chamada do método display_intro
+display_intro(jogadas) # Chamada do método display_intro
 
-logica # Chamada do método logica
+logica(jogadas) # Chamada do método logica
 
 puts
 puts "Pressione Enter para sair..."
